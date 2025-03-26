@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfluenceMatch - Conecte-se com as Melhores Marcas</title>
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #ff007f, #6600cc);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container { 
+            max-width: 500px; 
+            padding: 30px; 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1, h2 { margin-bottom: 20px; }
+        .btn { 
+            display: block; 
+            width: 100%; 
+            padding: 12px; 
+            background: #ff007f; 
+            color: white; 
+            text-align: center; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 18px; 
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover { 
+            background: #cc0066; 
+            transform: scale(1.05);
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+            text-align: left;
+        }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, select { 
+            width: 100%; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+        .progress-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 10px;
+            width: 0%;
+            background: white;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>InfluenceMatch</h1>
+        <h2>Conecte-se com as Melhores Marcas e Monetize seu Conteúdo</h2>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <form id="form">
+            <!-- Etapa 1: Informações Básicas -->
+            <div class="form-group" id="step-1">
+                <label>Nome Completo</label>
+                <input type="text" name="nome" required>
+            </div>
+            <div class="form-group" id="step-1">
+                <label>E-mail</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group" id="step-1">
+                <label>WhatsApp</label>
+                <input type="tel" name="whatsapp" required>
+            </div>
+            <div class="form-group" id="step-1">
+                <label>Gênero</label>
+                <select name="genero" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Não-binário">Não-binário</option>
+                </select>
+            </div>
+
+            <!-- Etapa 2: Informações do Perfil -->
+            <div class="form-group" id="step-2" style="display: none;">
+                <label>Nome de Usuário (caso possua)</label>
+                <input type="text" name="usuario">
+            </div>
+            <div class="form-group" id="step-2" style="display: none;">
+                <label>Link do Instagram</label>
+                <input type="url" name="instagram">
+            </div>
+            <div class="form-group" id="step-2" style="display: none;">
+                <label>Link do YouTube</label>
+                <input type="url" name="youtube">
+            </div>
+            <div class="form-group" id="step-2" style="display: none;">
+                <label>Link do TikTok</label>
+                <input type="url" name="tiktok">
+            </div>
+
+            <!-- Etapa 3: Categoria e Público-Alvo -->
+            <div class="form-group" id="step-3" style="display: none;">
+                <label>Categoria de Conteúdo</label>
+                <select name="categoria" required>
+                    <option value="Moda">Moda</option>
+                    <option value="Beleza">Beleza</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Gastronomia">Gastronomia</option>
+                    <option value="Viagem">Viagem</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                </select>
+            </div>
+            <div class="form-group" id="step-3" style="display: none;">
+                <label>Faixa Etária do Público-Alvo</label>
+                <select name="faixa_etaria" required>
+                    <option value="18-24">18-24</option>
+                    <option value="25-34">25-34</option>
+                    <option value="35-44">35-44</option>
+                    <option value="45-54">45-54</option>
+                    <option value="55+">55+</option>
+                </select>
+            </div>
+            <div class="form-group" id="step-3" style="display: none;">
+                <label>Segmento do Público-Alvo</label>
+                <input type="text" name="segmento">
+            </div>
+
+            <!-- Etapa 4: Informações de Alcance -->
+            <div class="form-group" id="step-4" style="display: none;">
+                <label>Alcance Médio no Instagram</label>
+                <input type="number" name="alcance_instagram">
+            </div>
+            <div class="form-group" id="step-4" style="display: none;">
+                <label>Alcance Médio no YouTube</label>
+                <input type="number" name="alcance_youtube">
+            </div>
+            <div class="form-group" id="step-4" style="display: none;">
+                <label>Alcance Médio no TikTok</label>
+                <input type="number" name="alcance_tiktok">
+            </div>
+
+            <!-- Etapa 5: Informações de Contato -->
+            <div class="form-group" id="step-5" style="display: none;">
+                <label>Endereço</label>
+                <input type="text" name="endereco">
+            </div>
+            <div class="form-group" id="step-5" style="display: none;">
+                <label>Cidade</label>
+                <input type="text" name="cidade">
+            </div>
+            <div class="form-group" id="step-5" style="display: none;">
+                <label>Estado</label>
+                <input type="text" name="estado">
+            </div>
+
+            <button type="button" class="btn" onclick="nextStep()">Próxima Etapa</button>
+        </form>
+    </div>
+    
+    <script>
+        let step = 1;
+        function nextStep() {
+            const progress = document.getElementById('progress');
+            const currentStep = document.getElementById(`step-${step}`);
+            const nextStep = document.getElementById(`step-${step + 1}`);
+
+            if (currentStep && nextStep) {
+                currentStep.style.display = "none";
+                nextStep.style.display = "block";
+                step++;
+                progress.style.width = (step * 20) + '%';
+            }
+        }
+    </script>
+</
